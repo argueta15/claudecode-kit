@@ -3,7 +3,7 @@ name: mobile-developer
 description: Expert in React Native and Flutter mobile development. Use for cross-platform mobile apps, native features, and mobile-specific patterns. Triggers on mobile, react native, flutter, ios, android, app store, expo.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, mobile-design
+skills: clean-code, mobile-design, flutter-expert
 ---
 
 # Mobile Developer
@@ -46,6 +46,12 @@ When you build mobile apps, you think:
 | **[mobile-debugging.md](../skills/mobile-design/mobile-debugging.md)** | **Native vs JS debugging, Flipper, Logcat** | **⬜ CRITICAL** |
 | [mobile-navigation.md](../skills/mobile-design/mobile-navigation.md) | Tab/Stack/Drawer, deep linking | ⬜ Read |
 | [decision-trees.md](../skills/mobile-design/decision-trees.md) | Framework, state, storage selection | ⬜ Read |
+
+### Flutter-Specific (Read for Flutter Projects)
+
+| File | Content | When to Read |
+|------|---------|--------------|
+| **[flutter-expert/SKILL.md](../skills/flutter-expert/SKILL.md)** | **Dart, widgets, state management, Supabase, animations, CI/CD** | **⬜ CRITICAL for Flutter** |
 
 > 🧠 **mobile-design-thinking.md is PRIORITY!** Prevents memorized patterns, forces thinking.
 

@@ -1,6 +1,6 @@
-# Guía de Uso - Claude Code Kit v2.1.0
+# Guía de Uso - Claude Code Kit v2.2.0
 
-Guía completa para sacar el máximo provecho del kit con 22 agentes, 66 skills, sistema de hooks, continuous learning y flujos de trabajo optimizados.
+Guía completa para sacar el máximo provecho del kit con 22 agentes, 68 skills (incluyendo Flutter/Dart), sistema de hooks, continuous learning y flujos de trabajo optimizados.
 
 ---
 
@@ -122,7 +122,87 @@ claude /vulnerability-scanner
 - **Usa database-architect** antes de escribir código
 - **security-auditor** para cualquier feature de auth/payment
 
-### 4. Testing Completo
+### 4. Desarrollo Mobile (Flutter)
+
+#### Setup Inicial
+```bash
+# Crear proyecto Flutter
+flutter create my_app
+cd my_app
+
+# Configurar arquitectura
+claude "Use mobile-developer to plan Flutter app architecture"
+
+# Consultar skill de Flutter
+claude /flutter-expert "project structure for medium app"
+```
+
+#### Desarrollo de Features
+```bash
+# Crear pantalla con estado
+claude "Use mobile-developer to create ProductListScreen in Flutter with Provider"
+
+# Patrones de UI
+claude /flutter-expert "responsive design patterns for phone and tablet"
+claude /flutter-expert "navigation with go_router"
+
+# Integración con Supabase
+claude /flutter-expert "Supabase authentication setup"
+claude /flutter-expert "realtime subscriptions with Supabase"
+
+# Animaciones
+claude /flutter-expert "Hero animation between list and detail"
+```
+
+#### State Management
+```bash
+# Provider (recomendado para apps pequeñas/medianas)
+claude /flutter-expert "Provider patterns for shopping cart"
+
+# Riverpod (recomendado para apps grandes)
+claude /flutter-expert "Riverpod async state with FutureProvider"
+
+# Bloc (apps complejas con lógica de negocio)
+claude /flutter-expert "Bloc pattern for authentication flow"
+```
+
+#### Testing
+```bash
+# Tests unitarios
+claude "Use mobile-developer to create unit tests for UserRepository"
+
+# Widget tests
+claude /flutter-expert "widget test for LoginForm"
+
+# Integration tests
+claude "Use qa-automation-engineer to create E2E test for checkout flow"
+```
+
+#### Build y Deploy
+```bash
+# Validar antes de build
+claude /checklist
+
+# Build Android
+flutter build apk --release
+
+# Build iOS
+cd ios && pod install
+flutter build ios --release
+
+# CI/CD
+claude /flutter-expert "GitHub Actions workflow for Flutter"
+```
+
+#### Tips Flutter
+- **mobile-developer** para arquitectura y decisiones de plataforma
+- **flutter-expert** para patrones específicos de Flutter/Dart
+- **QUICKSTART.md** en flutter-expert para ejemplos rápidos
+- **Siempre especifica** Provider/Riverpod/Bloc en tu request
+- **Lee mobile-design skill** para UX patterns (touch targets, gestures)
+- **qa-automation-engineer** tiene Vercel Agent Browser para E2E AI-native
+
+### 5. Testing Completo
 
 #### Estrategia de Testing
 ```bash
