@@ -1,0 +1,40 @@
+{
+  "name": "@claudecode-kit/scripts",
+  "version": "2.0.0",
+  "description": "Claude Code Kit - Node.js validation scripts",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "cc-checklist": ".agent/scripts/checklist.js",
+    "cc-verify": ".agent/scripts/verify-all.js"
+  },
+  "scripts": {
+    "checklist": "node .agent/scripts/checklist.js",
+    "verify": "node .agent/scripts/verify-all.js",
+    "test": "echo \"Run checklist: npm run checklist\" && exit 0"
+  },
+  "keywords": [
+    "claude-code",
+    "validation",
+    "checklist",
+    "lighthouse",
+    "playwright",
+    "development"
+  ],
+  "author": "Claude Code Kit",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "lighthouse": "^11.4.0",
+    "@playwright/test": "^1.40.1"
+  },
+  "optionalDependencies": {
+    "@axe-core/cli": "^4.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/claudecode-kit.git"
+  }
+}
