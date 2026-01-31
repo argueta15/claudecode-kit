@@ -1,6 +1,6 @@
 # Guía de Uso - Claude Code Kit v2.2.0
 
-Guía completa para sacar el máximo provecho del kit con 22 agentes, 68 skills (incluyendo Flutter/Dart), sistema de hooks, continuous learning y flujos de trabajo optimizados.
+Guía completa para sacar el máximo provecho del kit con 22 agentes, 69 skills (incluyendo Flutter/Dart), sistema de hooks, continuous learning, intelligent routing automático y flujos de trabajo optimizados.
 
 ---
 
@@ -8,11 +8,75 @@ Guía completa para sacar el máximo provecho del kit con 22 agentes, 68 skills 
 
 ### Principios Fundamentales
 
-1. **Agente Específico > Agente General** - Usa el agente más específico para cada tarea
-2. **Skill Cargado > Contexto Manual** - Los skills proporcionan contexto automático
-3. **Validación Temprana > Corrección Tardía** - Usa checklist/verify-all frecuentemente
-4. **Workflows > Comandos Manuales** - Aprovecha los workflows convertidos a skills
-5. **Automatización > Intervención Manual** - Los hooks aprenden y optimizan automáticamente ⭐ NEW
+1. **Routing Automático** - Ya no necesitas especificar el agente, se selecciona automáticamente ⭐ NEW
+2. **Agente Específico > Agente General** - El sistema elige el agente más específico para cada tarea
+3. **Skill Cargado > Contexto Manual** - Los skills proporcionan contexto automático
+4. **Validación Temprana > Corrección Tardía** - Usa checklist/verify-all frecuentemente
+5. **Workflows > Comandos Manuales** - Aprovecha los workflows convertidos a skills
+6. **Automatización > Intervención Manual** - Los hooks aprenden y optimizan automáticamente
+
+---
+
+## 🚀 Intelligent Routing (NEW)
+
+### ¿Qué es?
+
+**Ya no necesitas escribir "Use X agent"**. El sistema analiza automáticamente tu prompt y selecciona el agente más apropiado.
+
+### Cómo Funciona
+
+```
+Tu Prompt → [Análisis Automático] → [Selección de Agente] → Respuesta Especializada
+```
+
+### Ejemplos
+
+#### Antes (v2.1.0)
+```bash
+claude "Use frontend-specialist to create a dark mode toggle button"
+claude "Use mobile-developer to create a product list screen in Flutter"
+claude "Use security-auditor to review authentication flow"
+```
+
+#### Ahora (v2.2.0) - Automático ✨
+```bash
+claude "Create a dark mode toggle button"
+# 🤖 Applying knowledge of @frontend-specialist...
+
+claude "Create a product list screen in Flutter with Provider"
+# 🤖 Applying knowledge of @mobile-developer...
+
+claude "Review authentication flow for vulnerabilities"
+# 🤖 Applying knowledge of @security-auditor...
+```
+
+### Detección Automática por Keywords
+
+| Si mencionas... | Agente seleccionado automáticamente |
+|-----------------|-------------------------------------|
+| login, auth, password, jwt | `security-auditor` + `backend-specialist` |
+| vue, pinia, nuxt, composable | `frontend-specialist` (con vue3-expert) |
+| react, next.js, jsx, hooks | `frontend-specialist` (con nextjs-react-expert) |
+| flutter, dart, widget, provider | `mobile-developer` (con flutter-expert) |
+| api, endpoint, rest, graphql | `backend-specialist` |
+| schema, database, supabase | `database-architect` |
+| error, bug, crash | `debugger` |
+| test, coverage, e2e | `test-engineer` o `qa-automation-engineer` |
+| deploy, docker, ci/cd | `devops-engineer` |
+| slow, optimize, performance | `performance-optimizer` |
+
+### Override Manual
+
+Aún puedes especificar el agente manualmente si lo prefieres:
+
+```bash
+claude "Use backend-specialist to review this code"
+# Override: usa backend-specialist específicamente
+```
+
+### Ver Matriz Completa
+
+Lee `.agent/skills/intelligent-routing/SKILL.md` para la matriz completa de routing con todos los keywords.
 
 ---
 
@@ -25,20 +89,20 @@ Guía completa para sacar el máximo provecho del kit con 22 agentes, 68 skills 
 # Configurar estructura del proyecto
 claude /create "Vue 3 app with Pinia and Nuxt 3"
 
-# Revisar arquitectura
-claude "Use frontend-specialist to review project structure"
+# Revisar arquitectura (automático: @frontend-specialist)
+claude "Review my Vue 3 project structure"
 ```
 
 #### Desarrollo de Componentes
 ```bash
-# Crear componente siguiendo patrones Vue 3
-claude "Use frontend-specialist to create UserProfile component in Vue 3 with TypeScript"
+# Crear componente (automático: @frontend-specialist con vue3-expert)
+claude "Create a UserProfile component in Vue 3 with TypeScript"
 
 # Consultar patrones específicos
 claude /vue3-expert "best practices for composables"
 claude /vue3-expert "Pinia store patterns for auth"
 
-# Generar tests
+# Generar tests (automático: @test-engineer)
 claude /test "src/components/UserProfile.vue"
 ```
 
@@ -68,20 +132,20 @@ claude /deploy
 # Crear proyecto
 claude /create "Next.js 14 app with App Router and TypeScript"
 
-# Arquitectura
-claude "Use frontend-specialist to plan component structure"
+# Arquitectura (automático: @frontend-specialist)
+claude "Plan component structure for my Next.js app"
 ```
 
 #### Desarrollo
 ```bash
-# Componente Server/Client
-claude "Use frontend-specialist to create ProductCard with Server Components"
+# Componente Server/Client (automático: @frontend-specialist con nextjs-react-expert)
+claude "Create a ProductCard using Server Components"
 
 # Patrones Next.js
 claude /nextjs-react-expert "Server Actions patterns"
 claude /nextjs-react-expert "metadata and SEO for App Router"
 
-# Generar tests
+# Generar tests (automático: @test-engineer)
 claude /test "src/app/products/page.tsx"
 ```
 
@@ -94,25 +158,25 @@ claude /test "src/app/products/page.tsx"
 
 #### API Design
 ```bash
-# Diseñar API
-claude "Use backend-specialist to design REST API for user management"
+# Diseñar API (automático: @backend-specialist)
+claude "Design a REST API for user management"
 
 # Patrones específicos
 claude /api-patterns "tRPC vs REST for TypeScript monorepo"
 claude /nodejs-best-practices "async error handling patterns"
 
-# Schema de base de datos
-claude "Use database-architect to design schema for e-commerce"
+# Schema de base de datos (automático: @database-architect)
+claude "Design database schema for an e-commerce platform"
 claude /database-design "indexing strategy for high-traffic tables"
 ```
 
 #### Desarrollo
 ```bash
-# Crear endpoints
-claude "Use backend-specialist to implement user registration with JWT auth"
+# Crear endpoints (automático: @backend-specialist + @security-auditor)
+claude "Implement user registration API with JWT authentication"
 
-# Validación de seguridad
-claude "Use security-auditor to scan API for vulnerabilities"
+# Validación de seguridad (automático: @security-auditor)
+claude "Scan my API for security vulnerabilities"
 claude /vulnerability-scanner
 ```
 
@@ -130,8 +194,8 @@ claude /vulnerability-scanner
 flutter create my_app
 cd my_app
 
-# Configurar arquitectura
-claude "Use mobile-developer to plan Flutter app architecture"
+# Configurar arquitectura (automático: @mobile-developer con flutter-expert)
+claude "Plan architecture for a Flutter shopping app"
 
 # Consultar skill de Flutter
 claude /flutter-expert "project structure for medium app"
@@ -139,15 +203,15 @@ claude /flutter-expert "project structure for medium app"
 
 #### Desarrollo de Features
 ```bash
-# Crear pantalla con estado
-claude "Use mobile-developer to create ProductListScreen in Flutter with Provider"
+# Crear pantalla con estado (automático: @mobile-developer con flutter-expert)
+claude "Create a ProductListScreen in Flutter with Provider state management"
 
 # Patrones de UI
 claude /flutter-expert "responsive design patterns for phone and tablet"
 claude /flutter-expert "navigation with go_router"
 
-# Integración con Supabase
-claude /flutter-expert "Supabase authentication setup"
+# Integración con Supabase (automático: @mobile-developer + @backend-specialist)
+claude "Setup Supabase authentication in Flutter"
 claude /flutter-expert "realtime subscriptions with Supabase"
 
 # Animaciones
@@ -157,25 +221,25 @@ claude /flutter-expert "Hero animation between list and detail"
 #### State Management
 ```bash
 # Provider (recomendado para apps pequeñas/medianas)
-claude /flutter-expert "Provider patterns for shopping cart"
+claude "Create a shopping cart using Provider pattern in Flutter"
 
 # Riverpod (recomendado para apps grandes)
 claude /flutter-expert "Riverpod async state with FutureProvider"
 
 # Bloc (apps complejas con lógica de negocio)
-claude /flutter-expert "Bloc pattern for authentication flow"
+claude "Implement authentication flow using Bloc pattern"
 ```
 
 #### Testing
 ```bash
-# Tests unitarios
-claude "Use mobile-developer to create unit tests for UserRepository"
+# Tests unitarios (automático: @test-engineer)
+claude "Create unit tests for my UserRepository in Flutter"
 
 # Widget tests
 claude /flutter-expert "widget test for LoginForm"
 
-# Integration tests
-claude "Use qa-automation-engineer to create E2E test for checkout flow"
+# Integration tests (automático: @qa-automation-engineer)
+claude "Create E2E test for the checkout flow"
 ```
 
 #### Build y Deploy

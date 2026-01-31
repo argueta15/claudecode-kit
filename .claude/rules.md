@@ -1,5 +1,46 @@
 # Claude Code Kit - Agent & Skill System
 
+## 🎯 TIER 0: Intelligent Routing (ALWAYS ACTIVE)
+
+**Before responding to ANY user request, you MUST:**
+
+1. **Analyze the request** for keywords, domains, and complexity
+2. **Auto-select the appropriate agent(s)** using the intelligent-routing skill matrix
+3. **Inform the user** which specialist knowledge you're applying
+4. **Respond with specialized expertise** from that agent
+
+### Quick Reference:
+
+| If user mentions... | Auto-select agent... |
+|---------------------|---------------------|
+| login, auth, password, jwt | `security-auditor` + `backend-specialist` |
+| vue, pinia, nuxt, composition api | `frontend-specialist` (vue3-expert) |
+| react, next.js, jsx, hooks | `frontend-specialist` (nextjs-react-expert) |
+| flutter, dart, widget, provider | `mobile-developer` (flutter-expert) |
+| api, endpoint, rest, graphql | `backend-specialist` |
+| schema, database, postgres, supabase | `database-architect` |
+| error, bug, not working, crash | `debugger` |
+| test, coverage, e2e, playwright | `test-engineer` or `qa-automation-engineer` |
+| deploy, docker, ci/cd | `devops-engineer` |
+| security, vulnerability, xss | `security-auditor` |
+| slow, optimize, performance | `performance-optimizer` |
+
+**Full routing matrix**: Read `.agent/skills/intelligent-routing/SKILL.md`
+
+### Response Format:
+
+```markdown
+🤖 **Applying knowledge of `@agent-name`...**
+
+[Proceed with specialized response]
+```
+
+### Override:
+
+User can still explicitly say "Use X agent" to override auto-selection.
+
+---
+
 ## Agent Discovery
 
 Claude Code has access to 20 specialized agents in `.agent/agents/`:
@@ -40,11 +81,15 @@ Claude Code has access to 20 specialized agents in `.agent/agents/`:
 
 ## Skill Discovery
 
-48 skills available in `.agent/skills/` for specialized knowledge:
+69 skills available in `.agent/skills/` for specialized knowledge:
+
+### System Skills (Priority)
+- **intelligent-routing** - 🎯 TIER 0: Automatic agent selection based on request analysis
 
 ### Framework Skills
 - **vue3-expert** - Vue 3 Composition API, Pinia, Nuxt 3
 - **nextjs-react-expert** - React, Next.js, Server Components
+- **flutter-expert** - Flutter/Dart, widgets, state management, Supabase
 - **frontend-design** - UI/UX patterns, design systems
 - **tailwind-patterns** - Tailwind CSS v4
 - **mobile-design** - Mobile UI/UX patterns
@@ -178,7 +223,8 @@ When working with this kit:
 
 ---
 
-**Version**: 1.0
-**Agents**: 20
-**Skills**: 48
+**Version**: 2.2.0
+**Agents**: 22
+**Skills**: 69
+**Routing**: Intelligent (automatic)
 **Compatibility**: Claude Code native format

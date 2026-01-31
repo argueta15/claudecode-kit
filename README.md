@@ -1,8 +1,8 @@
 # Claude Code Kit 🚀
 
-> Sistema Completo de Agentes y Skills para Claude Code CLI
+> Sistema Completo de Agentes y Skills para Claude Code CLI con Intelligent Routing Automático
 
-**Versión 2.1.0** - Integración completa con hooks, continuous learning y MCP configs
+**Versión 2.2.0** - Intelligent routing, Flutter support, hooks, continuous learning y MCP configs
 
 **Migrado y adaptado desde [antigravity-kit](https://github.com/vudovn/antigravity-kit)** + **[everything-claude-code](https://github.com/affaan-m/everything-claude-code)**
 
@@ -10,18 +10,26 @@
 
 ## ⚡ Quick Start
 
+**🎯 NEW: Ya no necesitas especificar el agente - el routing es automático!**
+
 ```bash
-# Code review
+# Code review (automático: @code-reviewer)
 claude "Review my code for bugs and performance issues"
 
-# Generar tests (React o Vue 3)
-claude "Generate tests for src/components/UserCard.vue"
+# Vue 3 component (automático: @frontend-specialist con vue3-expert)
+claude "Create a UserCard component in Vue 3 with Pinia"
 
-# Generar documentación
-claude "Add JSDoc to my functions"
+# Flutter screen (automático: @mobile-developer con flutter-expert)
+claude "Create a product list screen in Flutter with Provider"
+
+# API endpoint (automático: @backend-specialist + @security-auditor)
+claude "Create user registration endpoint with JWT auth"
+
+# Generar tests (automático: @test-engineer)
+claude "Generate tests for src/components/UserCard.vue"
 ```
 
-**[Ver Guía Completa →](QUICKSTART.md)**
+**[Ver Guía Completa →](GUIA_USO.md)**
 
 ---
 
@@ -29,21 +37,51 @@ claude "Add JSDoc to my functions"
 
 | Categoría | Cantidad | Descripción |
 |-----------|----------|-------------|
-| 🤖 **Agentes** | 22 | Especialistas en frontend, backend, testing, seguridad, refactoring, build errors |
-| 🧩 **Skills** | 66 | Módulos de conocimiento (React, Vue 3, testing, architecture, learning, verification) |
+| 🎯 **Intelligent Routing** | ✅ | Selección automática de agentes basada en keywords - **SIN especificar manualmente** |
+| 🤖 **Agentes** | 22 | Especialistas en frontend, backend, testing, seguridad, refactoring, mobile |
+| 🧩 **Skills** | 69 | React, Vue 3, Flutter, testing, architecture, learning, verification, routing |
 | 🔄 **Workflows** | 11 | Procedimientos automatizados (review, test, deploy) - Convertidos a skills |
 | 🪝 **Hooks** | Sistema completo | Memory persistence, strategic compaction, continuous learning |
 | 🔌 **MCP Configs** | 4 | GitHub, Supabase, Vercel, Railway |
 | 🛠️ **Scripts Node.js** | 2 | Validación automática (checklist, verify-all) |
-| 📁 **Archivos** | 229+ | Total de archivos de configuración y documentación |
+| 📁 **Archivos** | 240+ | Total de archivos de configuración y documentación |
 
 ---
 
 ## 🎯 Características Principales
 
-### ✅ Soporte Dual Framework
+### ⚡ Intelligent Routing (NEW v2.2.0)
+
+**El sistema analiza automáticamente tu prompt y selecciona el agente apropiado sin necesidad de especificarlo.**
+
+| Mencionas... | Agente seleccionado automáticamente |
+|--------------|-------------------------------------|
+| vue, pinia, nuxt | `@frontend-specialist` (vue3-expert) |
+| react, next.js, jsx | `@frontend-specialist` (nextjs-react-expert) |
+| flutter, dart, widget | `@mobile-developer` (flutter-expert) |
+| api, endpoint, rest | `@backend-specialist` |
+| error, bug, crash | `@debugger` |
+| test, coverage | `@test-engineer` |
+| security, vulnerability | `@security-auditor` |
+
+**Ejemplo:**
+```bash
+# Escribe esto
+claude "Create a LoginForm in Vue 3"
+
+# El sistema hace esto
+🤖 Applying knowledge of @frontend-specialist...
+→ Auto-loads vue3-expert skill
+→ Response with Vue 3 Composition API patterns
+```
+
+**Matriz completa**: `.agent/skills/intelligent-routing/SKILL.md`
+**Ejemplos prácticos**: `.agent/skills/intelligent-routing/EXAMPLES.md`
+
+### ✅ Soporte Multi-Framework
 - **React**: Hooks, Next.js, Server Components, TypeScript
 - **Vue 3**: Composition API, Nuxt 3, Pinia, Script Setup
+- **Flutter**: Dart, widgets, Provider/Riverpod/Bloc, Supabase
 
 ### ✅ 22 Agentes Especializados
 - `frontend-specialist` - React + Vue 3
@@ -55,18 +93,20 @@ claude "Add JSDoc to my functions"
 - `refactor-cleaner` - Limpieza de código y refactoring ⭐ NEW
 - Y 15 más...
 
-### ✅ Skills Completas (66)
-- Vue 3 Expert (Composition API, Pinia)
-- React/Next.js Expert
-- Testing Patterns (Jest, Vitest)
+### ✅ Skills Completas (69)
+- **Intelligent Routing** - Selección automática de agentes ⭐ NEW v2.2.0
+- **Flutter Expert** - Flutter/Dart completo con Supabase ⭐ NEW v2.2.0
+- Vue 3 Expert (Composition API, Pinia, Nuxt 3)
+- React/Next.js Expert (Server Components, App Router)
+- Testing Patterns (Jest, Vitest, Playwright)
 - Clean Code Standards
 - Architecture Patterns
 - Security Best Practices
-- **Continuous Learning v2** - Aprendizaje automático de patrones ⭐ NEW
-- **Verification Loop** - Validación sistemática ⭐ NEW
-- **Strategic Compact** - Optimización de tokens ⭐ NEW
-- **Iterative Retrieval** - Manejo eficiente de contexto ⭐ NEW
-- Y 56 más...
+- **Continuous Learning v2** - Aprendizaje automático de patrones
+- **Verification Loop** - Validación sistemática
+- **Strategic Compact** - Optimización de tokens
+- **Iterative Retrieval** - Manejo eficiente de contexto
+- Y 57 más...
 
 ### ✅ Sistema de Hooks Completo ⭐ NEW
 - **Memory Persistence** - Contexto persistente entre sesiones
