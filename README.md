@@ -8,6 +8,28 @@
 
 ---
 
+## 📑 Índice
+
+- [Quick Start](#-quick-start)
+- [¿Qué Incluye?](#-qué-incluye)
+- [Características Principales](#-características-principales)
+  - [Intelligent Routing](#-intelligent-routing-new-v220)
+  - [Soporte Multi-Framework](#-soporte-multi-framework)
+  - [Agentes Especializados](#-22-agentes-especializados)
+  - [Skills Completas](#-skills-completas-69)
+  - [Sistema de Hooks](#-sistema-de-hooks-completo-)
+  - [MCP Server Configs](#-mcp-server-configs-)
+- [Instalación](#-instalación-rápida)
+- [Estado de Integración](#-estado-de-integración)
+- [Ejemplos de Uso](#-ejemplos-de-uso)
+- [Agentes por Categoría](#-agentes-por-categoría)
+- [Documentación](#-documentación)
+- [Contribuir](#-contribuir)
+- [Licencia](#-licencia)
+- [Créditos](#-créditos)
+
+---
+
 ## ⚡ Quick Start
 
 **🎯 NEW: Ya no necesitas especificar el agente - el routing es automático!**
@@ -166,7 +188,8 @@ ln -s ~/claudecode-kit/.agent ~/.claude/agents
 | Componente | Estado | Compatible |
 |------------|--------|------------|
 | **Agentes (22)** | ✅ Completo | Claude Code nativo |
-| **Skills (66)** | ✅ Completo | 61 base + 5 everything-claude-code |
+| **Skills (69)** | ✅ Completo | 61 base + 5 everything-claude-code + 3 nuevos (v2.2.0) |
+| **Intelligent Routing** | ✅ Completo | Selección automática de agentes ⭐ NEW |
 | **Workflows** | ✅ Convertidos | Ahora skills invocables |
 | **Scripts Node.js** | ✅ Completo | checklist.js, verify-all.js |
 | **Hooks System** | ✅ Completo | Memory, compaction, learning ⭐ |
@@ -174,6 +197,7 @@ ln -s ~/claudecode-kit/.agent ~/.claude/agents
 | **Configuración** | ✅ Completo | .claude/rules.md |
 | **Vue 3** | ✅ Completo | vue3-expert skill |
 | **React** | ✅ Completo | nextjs-react-expert skill |
+| **Flutter** | ✅ Completo | flutter-expert skill ⭐ NEW |
 
 **🎉 100% Compatible con Claude Code** + **Everything-Claude-Code Integration**
 
@@ -353,17 +377,28 @@ npm run verify
 
 ## 📚 Documentación
 
-| Documento | Descripción |
-|-----------|-------------|
-| [QUICKSTART.md](QUICKSTART.md) | Guía rápida de inicio |
-| [GUIA_USO.md](GUIA_USO.md) | **Guía completa de mejores prácticas** ⭐ |
-| [INSTALLATION.md](INSTALLATION.md) | Instalación y configuración |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | Arquitectura del sistema |
-| [FRAMEWORKS.md](FRAMEWORKS.md) | Soporte React vs Vue 3 |
-| [CLAUDE_CODE_INTEGRATION.md](CLAUDE_CODE_INTEGRATION.md) | Detalles técnicos de integración |
-| [INTEGRACION_COMPLETADA.md](INTEGRACION_COMPLETADA.md) | **Integración everything-claude-code** ⭐ NEW |
-| [.agent/skills/vue3-expert/](skills/vue3-expert/) | Guía completa Vue 3 |
-| [.agent/skills/vue3-expert/COMPARISON.md](skills/vue3-expert/COMPARISON.md) | React vs Vue lado a lado |
+### Documentos Principales (Root)
+
+| Documento | Descripción | Para quién |
+|-----------|-------------|------------|
+| **[README.md](README.md)** | Overview del proyecto (este archivo) | Todos |
+| **[GUIA_USO.md](GUIA_USO.md)** | Guía completa de uso con ejemplos | Usuarios del kit |
+| **[QUICKSTART.md](QUICKSTART.md)** | Inicio rápido en 5 minutos | Nuevos usuarios |
+| **[INSTALLATION.md](INSTALLATION.md)** | Guía detallada de instalación | Setup inicial |
+| **[ARCHITECTURE.md](ARCHITECTURE.md)** | Arquitectura del sistema | Desarrolladores |
+
+### Documentación Interna
+
+- **[.docs/](.docs/)** - Documentación histórica de migración (opcional para usuarios)
+
+### Recursos Adicionales
+
+| Recurso | Descripción |
+|---------|-------------|
+| [.agent/skills/vue3-expert/](.agent/skills/vue3-expert/) | Guía completa Vue 3 |
+| [.agent/skills/flutter-expert/](.agent/skills/flutter-expert/) | Guía completa Flutter/Dart |
+| [.agent/skills/intelligent-routing/](.agent/skills/intelligent-routing/) | Sistema de routing automático |
+| [.agent/skills/vue3-expert/COMPARISON.md](.agent/skills/vue3-expert/COMPARISON.md) | React vs Vue lado a lado |
 
 ---
 
