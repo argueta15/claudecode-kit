@@ -97,8 +97,8 @@ claude "Create a LoginForm in Vue 3"
 → Response with Vue 3 Composition API patterns
 ```
 
-**Matriz completa**: `.agent/skills/intelligent-routing/SKILL.md`
-**Ejemplos prácticos**: `.agent/skills/intelligent-routing/EXAMPLES.md`
+**Matriz completa**: `.claude/skills/intelligent-routing/SKILL.md`
+**Ejemplos prácticos**: `.claude/skills/intelligent-routing/EXAMPLES.md`
 
 ### ✅ Soporte Multi-Framework
 - **React**: Hooks, Next.js, Server Components, TypeScript
@@ -164,19 +164,19 @@ bash ../claudecode-kit/install.sh
 ### Método 2: Manual
 ```bash
 # Copiar directorio .agent
-cp -r claudecode-kit/.agent tu-proyecto/
+cp -r claudecode-kit/.claude tu-proyecto/
 
 # Copiar configuración Claude Code
 cp -r claudecode-kit/.claude tu-proyecto/
 
 # Verificar instalación
-ls -la .agent/
+ls -la .claude/
 ```
 
 ### Método 3: Global
 ```bash
 # Instalar globalmente
-ln -s ~/claudecode-kit/.agent ~/.claude/agents
+ln -s ~/claudecode-kit/.claude/agents ~/.claude/agents
 ```
 
 **[Ver guía completa de instalación →](INSTALLATION.md)**
@@ -258,8 +258,8 @@ claude /verification-loop "validate auth module"
 ### MCP Integration ⭐ NEW
 ```bash
 # Integrar con servicios externos
-cp .agent/mcp-configs/github.json ~/.claude/mcp-servers/
-cp .agent/mcp-configs/supabase.json ~/.claude/mcp-servers/
+cp .claude/mcp-configs/github.json ~/.claude/mcp-servers/
+cp .claude/mcp-configs/supabase.json ~/.claude/mcp-servers/
 ```
 
 ---
@@ -332,13 +332,13 @@ claude "Generate React Testing Library tests"
 ### Checklist Rápido (Desarrollo)
 ```bash
 # Con Node.js directamente
-node .agent/scripts/checklist.js .
+node .claude/scripts/checklist.js .
 
 # O con npm script
 npm run checklist
 
 # Sin build check
-node .agent/scripts/checklist.js . --no-build
+node .claude/scripts/checklist.js . --no-build
 ```
 
 **Incluye:**
@@ -356,10 +356,10 @@ node .agent/scripts/checklist.js . --no-build
 ### Verificación Completa (Pre-deploy)
 ```bash
 # Requiere URL de servidor corriendo
-node .agent/scripts/verify-all.js . --url=http://localhost:3000
+node .claude/scripts/verify-all.js . --url=http://localhost:3000
 
 # Sin E2E tests (más rápido)
-node .agent/scripts/verify-all.js . --url=http://localhost:3000 --no-e2e
+node .claude/scripts/verify-all.js . --url=http://localhost:3000 --no-e2e
 
 # O con npm script
 npm run verify
@@ -395,10 +395,10 @@ npm run verify
 
 | Recurso | Descripción |
 |---------|-------------|
-| [.agent/skills/vue3-expert/](.agent/skills/vue3-expert/) | Guía completa Vue 3 |
-| [.agent/skills/flutter-expert/](.agent/skills/flutter-expert/) | Guía completa Flutter/Dart |
-| [.agent/skills/intelligent-routing/](.agent/skills/intelligent-routing/) | Sistema de routing automático |
-| [.agent/skills/vue3-expert/COMPARISON.md](.agent/skills/vue3-expert/COMPARISON.md) | React vs Vue lado a lado |
+| [.claude/skills/vue3-expert/](.claude/skills/vue3-expert/) | Guía completa Vue 3 |
+| [.claude/skills/flutter-expert/](.claude/skills/flutter-expert/) | Guía completa Flutter/Dart |
+| [.claude/skills/intelligent-routing/](.claude/skills/intelligent-routing/) | Sistema de routing automático |
+| [.claude/skills/vue3-expert/COMPARISON.md](.claude/skills/vue3-expert/COMPARISON.md) | React vs Vue lado a lado |
 
 ---
 

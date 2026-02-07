@@ -173,19 +173,19 @@ claude "Generate tests for this React component"
 ### Validación Rápida
 ```bash
 # Correr checklist durante desarrollo
-node .agent/scripts/checklist.js .
+node .claude/scripts/checklist.js .
 
 # Incluir checks de performance
-node .agent/scripts/checklist.js . --url http://localhost:3000
+node .claude/scripts/checklist.js . --url http://localhost:3000
 ```
 
 ### Verificación Completa
 ```bash
 # Antes de deployment
-node .agent/scripts/verify-all.js . --url http://localhost:3000
+node .claude/scripts/verify-all.js . --url http://localhost:3000
 
 # Sin E2E tests
-node .agent/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
+node .claude/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
 ```
 
 ---
@@ -206,7 +206,7 @@ node .agent/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
 1. claude "Create a user registration form in Vue 3"
 2. claude "Generate tests for the registration form"
 3. claude "Add validation to the form"
-4. node .agent/scripts/checklist.js .
+4. node .claude/scripts/checklist.js .
 ```
 
 ### Caso 2: Code Review
@@ -214,7 +214,7 @@ node .agent/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
 1. claude "Review changes in src/services/"
 2. claude "Check for security issues"
 3. claude "Generate missing tests"
-4. node .agent/scripts/verify-all.js . --url http://localhost:3000
+4. node .claude/scripts/verify-all.js . --url http://localhost:3000
 ```
 
 ### Caso 3: Refactoring
@@ -222,7 +222,7 @@ node .agent/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
 1. claude "Refactor UserService to be more modular"
 2. claude "Update tests after refactoring"
 3. claude "Document the new structure"
-4. node .agent/scripts/checklist.js .
+4. node .claude/scripts/checklist.js .
 ```
 
 ### Caso 4: Bug Fix
@@ -256,8 +256,8 @@ claude "Convert to React using hooks"
 ### 3. Aprovecha los Scripts
 ```bash
 # Automatiza validaciones
-alias check="node .agent/scripts/checklist.js ."
-alias verify="node .agent/scripts/verify-all.js . --url http://localhost:3000"
+alias check="node .claude/scripts/checklist.js ."
+alias verify="node .claude/scripts/verify-all.js . --url http://localhost:3000"
 ```
 
 ### 4. Combina Agentes
@@ -321,7 +321,7 @@ claude /verification-loop "validate payment module"
 ### MCP Integrations
 ```bash
 # GitHub, Supabase, Vercel, Railway pre-configurados
-cp .agent/mcp-configs/mcp-servers.json ~/.claude/mcp-servers/
+cp .claude/mcp-configs/mcp-servers.json ~/.claude/mcp-servers/
 
 # Luego:
 claude "list my GitHub PRs"
@@ -346,8 +346,8 @@ claude "deploy to Vercel"
 node --version  # Requiere Node.js 16+
 
 # Ejecutar scripts:
-node .agent/scripts/checklist.js .
-node .agent/scripts/verify-all.js . --url http://localhost:3000
+node .claude/scripts/checklist.js .
+node .claude/scripts/verify-all.js . --url http://localhost:3000
 
 # O usar npm scripts:
 npm run checklist

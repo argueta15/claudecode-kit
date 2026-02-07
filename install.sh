@@ -34,16 +34,16 @@ else
 fi
 
 # Check if already installed
-if [ -d ".agent" ]; then
-    print_warning ".agent directory already exists"
+if [ -d ".claude/agents" ]; then
+    print_warning ".claude/agents directory already exists"
     read -p "Overwrite? (y/n): " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         print_error "Installation cancelled"
         exit 1
     fi
-    print_info "Removing existing .agent directory..."
-    rm -rf .agent
+    print_info "Removing existing agent directories..."
+    rm -rf .claude/agents .claude/skills .claude/scripts .claude/.shared
 fi
 
 # Get script directory (where claudecode-kit is)
@@ -53,13 +53,21 @@ print_info "Installing from: $SCRIPT_DIR"
 print_info "Installing to: $INSTALL_DIR"
 echo ""
 
-# Step 1: Copy .agent directory
+# Step 1: Copy agent system
 print_info "Copying agent system..."
-if [ -d "$SCRIPT_DIR/.agent" ]; then
-    cp -r "$SCRIPT_DIR/.agent" "$INSTALL_DIR/"
+if [ -d "$SCRIPT_DIR/.claude" ]; then
+    # Create directory if needed
+    mkdir -p "$INSTALL_DIR/.claude"
+    
+    # Copy directories
+    cp -r "$SCRIPT_DIR/.claude/agents" "$INSTALL_DIR/.claude/"
+    cp -r "$SCRIPT_DIR/.claude/skills" "$INSTALL_DIR/.claude/"
+    cp -r "$SCRIPT_DIR/.claude/scripts" "$INSTALL_DIR/.claude/"
+    cp -r "$SCRIPT_DIR/.claude/.shared" "$INSTALL_DIR/.claude/"
+    
     print_success "Agents and skills installed"
 else
-    print_error ".agent directory not found in $SCRIPT_DIR"
+    print_error ".claude directory not found in $SCRIPT_DIR"
     exit 1
 fi
 
@@ -87,9 +95,9 @@ fi
 echo ""
 print_info "Counting installed components..."
 
-AGENT_COUNT=$(find "$INSTALL_DIR/.agent/agents" -name "*.md" | wc -l | tr -d ' ')
-SKILL_COUNT=$(find "$INSTALL_DIR/.agent/skills" -name "SKILL.md" | wc -l | tr -d ' ')
-SCRIPT_COUNT=$(find "$INSTALL_DIR/.agent/scripts" -name "*.py" | wc -l | tr -d ' ')
+AGENT_COUNT=$(find "$INSTALL_DIR/.claude/agents" -name "*.md" | wc -l | tr -d ' ')
+SKILL_COUNT=$(find "$INSTALL_DIR/.claude/skills" -name "SKILL.md" | wc -l | tr -d ' ')
+SCRIPT_COUNT=$(find "$INSTALL_DIR/.claude/scripts" -name "*.py" | wc -l | tr -d ' ')
 
 print_success "Agents: $AGENT_COUNT"
 print_success "Skills: $SKILL_COUNT"
@@ -125,11 +133,12 @@ fi
 
 # Step 5: Create .gitignore entry if needed
 if [ -f "$INSTALL_DIR/.gitignore" ]; then
-    if ! grep -q ".agent" "$INSTALL_DIR/.gitignore"; then
+    if ! grep -q ".claude/agents" "$INSTALL_DIR/.gitignore"; then
         echo "" >> "$INSTALL_DIR/.gitignore"
-        echo "# Claude Code Kit - Optional: uncomment to exclude from git" >> "$INSTALL_DIR/.gitignore"
-        echo "# .agent/" >> "$INSTALL_DIR/.gitignore"
-        print_success "Added .agent to .gitignore (commented)"
+        echo "# Claude Code Kit - Optional: uncomment to exclude installed agents" >> "$INSTALL_DIR/.gitignore"
+        echo "# .claude/agents/" >> "$INSTALL_DIR/.gitignore"
+        echo "# .claude/skills/" >> "$INSTALL_DIR/.gitignore"
+        print_success "Added .claude paths to .gitignore (commented)"
     fi
 fi
 
@@ -140,16 +149,16 @@ echo -e "${GREEN}✓ Installation Complete!${NC}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "📦 Installed:"
-echo "   • $AGENT_COUNT agents in .agent/agents/"
-echo "   • $SKILL_COUNT skills in .agent/skills/"
-echo "   • $SCRIPT_COUNT scripts in .agent/scripts/"
-echo "   • Design resources in .agent/.shared/"
+echo "   • $AGENT_COUNT agents in .claude/agents/"
+echo "   • $SKILL_COUNT skills in .claude/skills/"
+echo "   • $SCRIPT_COUNT scripts in .claude/scripts/"
+echo "   • Design resources in .claude/.shared/"
 echo ""
 echo "🚀 Quick Start:"
 echo "   1. Test agents:   claude \"list available agents\""
 echo "   2. Try a skill:   claude /vue3-expert \"composable patterns\""
 echo "   3. Use workflow:  claude /test"
-echo "   4. Run checks:    python .agent/scripts/checklist.py ."
+echo "   4. Run checks:    python .claude/scripts/checklist.py ."
 echo ""
 echo "📚 Documentation:"
 echo "   • Quick Start:    cat QUICKSTART.md"

@@ -24,7 +24,7 @@ Complete installation and setup guide for Claude Code Kit with 22 agents, 66 ski
 
 ### Option 1: Install to Project (Recommended)
 
-Copy the kit to your project's `.agent/` directory:
+Copy the kit to your project's `.claude/` directory:
 
 ```bash
 # Navigate to your project
@@ -33,30 +33,26 @@ cd your-project/
 # Clone or copy claudecode-kit
 git clone https://github.com/yourusername/claudecode-kit.git temp-kit
 
-# Copy .agent directory
-cp -r temp-kit/.agent .
-
-# Copy .claude configuration
+# Copy .claude directory
 cp -r temp-kit/.claude .
 
 # Clean up
 rm -rf temp-kit
 
 # Verify installation
-ls -la .agent/
+ls -la .claude/
 ```
 
 Your project structure:
 ```
 your-project/
-├── .agent/
+├── .claude/
 │   ├── agents/       (22 agents - includes build-error-resolver, refactor-cleaner)
 │   ├── skills/       (66 skills - includes continuous-learning-v2, verification-loop, etc.)
 │   ├── scripts/      (2 Node.js scripts - checklist.js, verify-all.js)
 │   ├── hooks/        (hooks.json - memory, learning, compaction) ⭐ NEW
 │   ├── mcp-configs/  (GitHub, Supabase, Vercel, Railway) ⭐ NEW
-│   └── .shared/      (design resources)
-├── .claude/
+│   ├── .shared/      (design resources)
 │   ├── rules.md      (agent discovery)
 │   └── settings.local.json
 └── [your project files]
@@ -71,10 +67,10 @@ Install globally for use across all projects:
 git clone https://github.com/yourusername/claudecode-kit.git ~/claudecode-kit
 
 # Create symlink (macOS/Linux)
-ln -s ~/claudecode-kit/.agent ~/.claude/agents
+ln -s ~/claudecode-kit/.claude/agents ~/.claude/agents
 
 # Or copy to global location
-cp -r ~/claudecode-kit/.agent ~/.claude/agents
+cp -r ~/claudecode-kit/.claude/agents ~/.claude/agents
 ```
 
 ---
@@ -125,13 +121,13 @@ Run validation to ensure everything works:
 
 ```bash
 # Quick check (requires Node.js)
-node .agent/scripts/checklist.js .
+node .claude/scripts/checklist.js .
 
 # Or use npm script
 npm run checklist
 
 # Full validation with dev server
-node .agent/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
+node .claude/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
 
 # Or
 npm run verify
@@ -142,14 +138,14 @@ npm run verify
 The hooks system works automatically - no configuration needed:
 
 ```bash
-# Hooks are already configured in .agent/hooks/hooks.json
+# Hooks are already configured in .claude/hooks/hooks.json
 # They run automatically on events:
 # - on_task_complete: Learns from completed tasks
 # - on_session_start: Restores context
 # - on_context_limit: Compacts strategically
 
 # To verify hooks config:
-cat .agent/hooks/hooks.json
+cat .claude/hooks/hooks.json
 ```
 
 ### 5. Setup MCP Integrations (Optional) ⭐ NEW
@@ -158,7 +154,7 @@ For GitHub, Supabase, Vercel, Railway integrations:
 
 ```bash
 # Copy MCP config to Claude settings
-cp .agent/mcp-configs/mcp-servers.json ~/.claude/mcp-servers/
+cp .claude/mcp-configs/mcp-servers.json ~/.claude/mcp-servers/
 
 # Edit to add your credentials
 # ~/.claude/mcp-servers/mcp-servers.json
@@ -269,7 +265,7 @@ Expected: Validation results (may have lint errors for simple test).
 
 After installation, verify:
 
-- [ ] `.agent/` directory exists with agents, skills, scripts
+- [ ] `.claude/` directory exists with agents, skills, scripts
 - [ ] `.claude/rules.md` exists
 - [ ] Claude can list available agents
 - [ ] Skills can be invoked (e.g., `/vue3-expert`)
@@ -282,7 +278,7 @@ After installation, verify:
 ## 📦 What Gets Installed
 
 ```
-.agent/
+.claude/
 ├── agents/              20 specialized agents
 │   ├── frontend-specialist.md
 │   ├── backend-specialist.md
@@ -307,10 +303,9 @@ After installation, verify:
 │   ├── auto_preview.py
 │   └── session_manager.py
 │
-└── .shared/             Design resources
-    └── ui-ux-pro-max/   50 styles, 21 palettes, templates
-
-.claude/
+├── .shared/             Design resources
+│   └── ui-ux-pro-max/   50 styles, 21 palettes, templates
+│
 ├── rules.md             Agent/skill discovery
 └── settings.local.json  Permissions (optional)
 ```
@@ -330,8 +325,8 @@ After installation, verify:
 
 **Solution:**
 ```bash
-# Verify .agent directory exists
-ls -la .agent/agents/
+# Verify .claude/agents directory exists
+ls -la .claude/agents/
 
 # Check Claude Code working directory
 claude "what is my current working directory?"
@@ -344,7 +339,7 @@ claude "what is my current working directory?"
 **Solution:**
 ```bash
 # Verify skills directory
-ls -la .agent/skills/
+ls -la .claude/skills/
 
 # Check skill name (use exact name from SKILL.md)
 # Example: /vue3-expert not /vue-3-expert
@@ -387,7 +382,7 @@ Edit `.claude/settings.local.json`:
 npm install -g lighthouse
 
 # Or skip Lighthouse in verify_all
-python .agent/scripts/verify_all.py . --url URL --no-lighthouse
+python .claude/scripts/verify_all.py . --url URL --no-lighthouse
 ```
 
 ### Issue: "E2E tests timeout"
@@ -398,7 +393,7 @@ python .agent/scripts/verify_all.py . --url URL --no-lighthouse
 npx playwright install
 
 # Or skip E2E tests
-python .agent/scripts/verify_all.py . --url URL --no-e2e
+python .claude/scripts/verify_all.py . --url URL --no-e2e
 ```
 
 ---
@@ -413,7 +408,6 @@ cd ~/claudecode-kit
 git pull origin main
 
 # Copy updated files to project
-cp -r .agent/* your-project/.agent/
 cp -r .claude/* your-project/.claude/
 ```
 
@@ -428,8 +422,7 @@ To remove the kit:
 ```bash
 # Remove from project
 cd your-project
-rm -rf .agent
-rm -rf .claude/rules.md
+rm -rf .claude
 
 # Or remove global installation
 rm -rf ~/.claude/agents
@@ -445,7 +438,7 @@ After installation:
 2. **Explore the Architecture**: [ARCHITECTURE.md](ARCHITECTURE.md)
 3. **Check Framework Support**: [FRAMEWORKS.md](FRAMEWORKS.md)
 4. **Try a workflow**: `claude /test` or `claude /brainstorm`
-5. **Use validation**: `python .agent/scripts/checklist.py .`
+5. **Use validation**: `python .claude/scripts/checklist.py .`
 
 ---
 
@@ -454,7 +447,7 @@ After installation:
 - **Documentation**: Check README.md, QUICKSTART.md, ARCHITECTURE.md
 - **Examples**: See QUICKSTART.md for usage examples
 - **Issues**: Report bugs or ask questions on GitHub Issues
-- **Skills**: Browse `.agent/skills/` for available knowledge modules
+- **Skills**: Browse `.claude/skills/` for available knowledge modules
 
 ---
 
@@ -473,7 +466,7 @@ claude /vue3-expert "show me Pinia patterns"
 claude "Use frontend-specialist to review my component"
 
 # Run validation
-python .agent/scripts/checklist.py .
+python .claude/scripts/checklist.py .
 ```
 
 **Happy coding! 🚀**

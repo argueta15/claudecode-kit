@@ -20,7 +20,7 @@ Claude Code Kit v2.1.0 is a modular system consisting of:
 ## 🏗️ Directory Structure
 
 ```plaintext
-.agent/
+.claude/
 ├── agents/                  # 22 Specialist Agents
 │   ├── frontend-specialist.md
 │   ├── backend-specialist.md
@@ -222,7 +222,7 @@ Automatic background processes that enhance Claude Code's capabilities:
 - `on_context_limit`: Compacts context strategically
 
 ### Configuration
-Located in `.agent/hooks/hooks.json` - works automatically without manual intervention.
+Located in `.claude/hooks/hooks.json` - works automatically without manual intervention.
 
 ---
 
@@ -237,7 +237,7 @@ Pre-configured Model Context Protocol servers for external service integration:
 | **Vercel** | Deployments, Previews, Logs |
 | **Railway** | Infrastructure, Environment vars |
 
-Configuration: `.agent/mcp-configs/mcp-servers.json` → `~/.claude/mcp-servers/`
+Configuration: `.claude/mcp-configs/mcp-servers.json` → `~/.claude/mcp-servers/`
 
 ---
 
@@ -313,20 +313,20 @@ Node.js validation scripts (migrated from Python for better integration).
 
 ```bash
 # Quick validation during development
-node .agent/scripts/checklist.js .
+node .claude/scripts/checklist.js .
 
 # Or use npm scripts
 npm run checklist
 
 # Full verification before deployment
-node .agent/scripts/verify-all.js . --url http://localhost:3000
+node .claude/scripts/verify-all.js . --url http://localhost:3000
 
 # Or
 npm run verify
 
 # Skip specific checks
-node .agent/scripts/checklist.js . --no-build
-node .agent/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
+node .claude/scripts/checklist.js . --no-build
+node .claude/scripts/verify-all.js . --url http://localhost:3000 --no-e2e
 ```
 
 ### What They Check
